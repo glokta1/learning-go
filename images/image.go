@@ -18,7 +18,7 @@ func (img Image) ColorModel() color.Model {
 }
 
 func (img Image) Bounds() image.Rectangle {
-	return image.Rectangle{image.Point{0, img.w}, image.Point{0, img.h}}
+	return image.Rect(0, 0, img.w, img.h)
 }
 
 func (img Image) At(x, y int) color.Color {
@@ -40,6 +40,6 @@ func Pic(dx, dy int) Image {
 }
 
 func main() {
-	m := Image{}
+	m := Pic(256, 256)
 	pic.ShowImage(m)
 }
