@@ -40,6 +40,20 @@ func (ll *LinkedList[T]) Delete(x T) {
 	prev.next = curr.next
 }
 
+// returns position of node if found, -1 otherwise
+func (ll *LinkedList[T]) Index(x T) int {
+	var p *Node[T]
+	var idx int
+	for p, idx = ll.head, 0; p.val != x && p != nil; p, idx = p.next, idx+1 {
+	}
+
+	if p == nil {
+		return -1
+	}
+
+	return idx
+}
+
 func (ll LinkedList[T]) String() string {
 	var out string
 	for p := ll.head; p != nil; p = p.next {
@@ -56,7 +70,8 @@ func main() {
 	ll.Insert(12)
 	ll.Insert(3)
 	fmt.Println(ll)
+	fmt.Println(ll.Index(9))
 	ll.Delete(3)
-
 	fmt.Println(ll)
+
 }
