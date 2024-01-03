@@ -10,7 +10,7 @@ type Node[T any] struct {
 // if the original data structure is a pointer and you want to modify it in-place
 // it requires an invalid pointer-to-pointer receiver
 // solution: wrap the pointer in a struct and define methods on that struct
-type LinkedList[T any] struct {
+type LinkedList[T comparable] struct {
 	head *Node[T]
 }
 
@@ -22,6 +22,22 @@ func (ll *LinkedList[T]) Insert(x T) {
 	// fix links
 	new_node.next = ll.head
 	ll.head = new_node
+}
+
+// Deletes a Node with value x
+func (ll *LinkedList[T]) Delete(x T) {
+	// traverse to node with value x
+	var prev, curr *Node[T]
+	for prev, curr = nil, ll.head; curr != nil && curr.val != x; prev, curr = curr, curr.next {
+	}
+
+	// x is at first node
+	if prev == nil {
+		ll.head = curr.next
+		return
+	}
+
+	prev.next = curr.next
 }
 
 func (ll LinkedList[T]) String() string {
@@ -38,6 +54,9 @@ func main() {
 	var ll LinkedList[int]
 	ll.Insert(9)
 	ll.Insert(12)
+	ll.Insert(3)
+	fmt.Println(ll)
+	ll.Delete(3)
 
 	fmt.Println(ll)
 }
