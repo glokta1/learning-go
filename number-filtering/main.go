@@ -22,5 +22,34 @@ func ExtractOdd(s []int) []int {
 	return oddSlice
 }
 
+func isPrime(n int) bool {
+	if n == 2 || n == 3 {
+		return true
+	}
+
+	if n <= 1 || n > 3 && (n%2 == 0 || n%3 == 0) {
+		return false
+	}
+
+	for i := 5; i*i <= n; i += 2 {
+		if n%i == 0 {
+			return false
+		}
+	}
+
+	return true
+}
+
+func ExtractPrimes(s []int) []int {
+	primesSlice := make([]int, 0, len(s))
+	for _, num := range s {
+		if isPrime(num) {
+			primesSlice = append(primesSlice, num)
+		}
+	}
+
+	return primesSlice
+}
+
 func main() {
 }
