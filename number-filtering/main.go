@@ -51,5 +51,9 @@ func ExtractPrimes(s []int) []int {
 	return primesSlice
 }
 
+func ExtractOddPrimes(s []int) []int {
+	return ExtractOdd(ExtractPrimes(s))
+}
+
 func main() {
 }

@@ -31,3 +31,12 @@ func TestExtractPrimes(t *testing.T) {
 		t.Errorf("got %q want %q", got, want)
 	}
 }
+
+func TestExtractOddPrimes(t *testing.T) {
+	got := ExtractOddPrimes([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+	want := []int{3, 5, 7}
+
+	if !slices.Equal(got, want) {
+		t.Errorf("got %q want %q", got, want)
+	}
+}
