@@ -55,5 +55,27 @@ func ExtractOddPrimes(s []int) []int {
 	return ExtractOdd(ExtractPrimes(s))
 }
 
+func ExtractEvenAndFives(s []int) []int {
+	fives := make([]int, 0, len(s))
+	for _, num := range s {
+		if num%5 == 0 {
+			fives = append(fives, num)
+		}
+	}
+
+	return ExtractEven(fives)
+}
+
+func ExtractOddThreesAboveTen(s []int) []int {
+	threesAboveTen := make([]int, 0, len(s))
+	for _, num := range s {
+		if num > 10 && num%3 == 0 {
+			threesAboveTen = append(threesAboveTen, num)
+		}
+	}
+
+	return ExtractOdd(threesAboveTen)
+}
+
 func main() {
 }
