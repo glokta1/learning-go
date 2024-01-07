@@ -1,25 +1,19 @@
 package main
 
-func ExtractEven(s []int) []int {
-	evenSlice := make([]int, 0, len(s))
-	for _, num := range s {
-		if num%2 == 0 {
-			evenSlice = append(evenSlice, num)
-		}
-	}
-
-	return evenSlice
+func isEven(n int) bool {
+	return n%2 == 0
 }
 
-func ExtractOdd(s []int) []int {
-	oddSlice := make([]int, 0, len(s))
-	for _, num := range s {
-		if num%2 != 0 {
-			oddSlice = append(oddSlice, num)
-		}
-	}
+func isOdd(n int) bool {
+	return n%2 != 0
+}
 
-	return oddSlice
+func isMultipleOfThree(n int) bool {
+	return n%3 == 0
+}
+
+func isMultipleOfFive(n int) bool {
+	return n%5 == 0
 }
 
 func isPrime(n int) bool {
@@ -40,6 +34,28 @@ func isPrime(n int) bool {
 	return true
 }
 
+func ExtractEven(s []int) []int {
+	evenSlice := make([]int, 0, len(s))
+	for _, num := range s {
+		if isEven(num) {
+			evenSlice = append(evenSlice, num)
+		}
+	}
+
+	return evenSlice
+}
+
+func ExtractOdd(s []int) []int {
+	oddSlice := make([]int, 0, len(s))
+	for _, num := range s {
+		if isOdd(num) {
+			oddSlice = append(oddSlice, num)
+		}
+	}
+
+	return oddSlice
+}
+
 func ExtractPrimes(s []int) []int {
 	primesSlice := make([]int, 0, len(s))
 	for _, num := range s {
@@ -56,25 +72,25 @@ func ExtractOddPrimes(s []int) []int {
 }
 
 func ExtractEvenAndFives(s []int) []int {
-	fives := make([]int, 0, len(s))
+	evenFives := make([]int, 0, len(s))
 	for _, num := range s {
-		if num%5 == 0 {
-			fives = append(fives, num)
+		if isMultipleOfFive(num) && isEven(num) {
+			evenFives = append(evenFives, num)
 		}
 	}
 
-	return ExtractEven(fives)
+	return evenFives
 }
 
 func ExtractOddThreesAboveTen(s []int) []int {
-	threesAboveTen := make([]int, 0, len(s))
+	oddThreesAboveTen := make([]int, 0, len(s))
 	for _, num := range s {
-		if num > 10 && num%3 == 0 {
-			threesAboveTen = append(threesAboveTen, num)
+		if num > 10 && isMultipleOfThree(num) && isOdd(num) {
+			oddThreesAboveTen = append(oddThreesAboveTen, num)
 		}
 	}
 
-	return ExtractOdd(threesAboveTen)
+	return oddThreesAboveTen
 }
 
 func main() {
