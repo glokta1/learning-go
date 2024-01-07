@@ -58,3 +58,21 @@ func TestExtractOddThreesAboveTen(t *testing.T) {
 		t.Errorf("got %q want %q", got, want)
 	}
 }
+
+func TestExtractMatchingInts(t *testing.T) {
+	got := ExtractMatchingInts([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, isEven)
+	want := []int{2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
+
+	if !slices.Equal(got, want) {
+		t.Errorf("got %q want %q", got, want)
+	}
+}
+
+func TestExtractMatchingInts_MultipleConditions(t *testing.T) {
+	got := ExtractMatchingInts([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, isEven, isMultipleOfThree)
+	want := []int{6, 12, 18}
+
+	if !slices.Equal(got, want) {
+		t.Errorf("got %q want %q", got, want)
+	}
+}

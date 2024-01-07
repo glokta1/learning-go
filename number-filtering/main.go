@@ -1,5 +1,7 @@
 package main
 
+type check func(int) bool
+
 func isEven(n int) bool {
 	return n%2 == 0
 }
@@ -91,6 +93,25 @@ func ExtractOddThreesAboveTen(s []int) []int {
 	}
 
 	return oddThreesAboveTen
+}
+
+func ExtractMatchingInts(s []int, conditions ...check) []int {
+	matches := make([]int, 0, len(s))
+	for _, num := range s {
+		all := true
+		for _, condition := range conditions {
+			if !condition(num) {
+				all = false
+				break
+			}
+		}
+
+		if all {
+			matches = append(matches, num)
+		}
+	}
+
+	return matches
 }
 
 func main() {
