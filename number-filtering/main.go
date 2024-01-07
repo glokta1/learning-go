@@ -11,6 +11,16 @@ func ExtractEven(s []int) []int {
 	return evenSlice
 }
 
-func main() {
+func ExtractOdd(s []int) []int {
+	oddSlice := make([]int, 0, len(s))
+	for _, num := range s {
+		if num%2 != 0 {
+			oddSlice = append(oddSlice, num)
+		}
+	}
 
+	return oddSlice
+}
+
+func main() {
 }
