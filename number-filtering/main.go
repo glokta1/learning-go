@@ -114,5 +114,18 @@ func ExtractMatchingInts(s []int, conditions ...check) []int {
 	return matches
 }
 
+func ExtractMatchingIntsAny(s []int, conditions ...check) []int {
+	matches := make([]int, 0, len(s))
+	for _, num := range s {
+		for _, condition := range conditions {
+			if condition(num) {
+				matches = append(matches, num)
+				break
+			}
+		}
+	}
+
+	return matches
+}
 func main() {
 }

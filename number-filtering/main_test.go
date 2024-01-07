@@ -76,3 +76,51 @@ func TestExtractMatchingInts_MultipleConditions(t *testing.T) {
 		t.Errorf("got %q want %q", got, want)
 	}
 }
+func TestExtractMatchingIntsAny(t *testing.T) {
+	tests := []struct {
+		name       string
+		input      []int
+		conditions []check
+		want       []int
+	}{
+		{
+			name:       "Empty input",
+			input:      []int{},
+			conditions: []check{isEven},
+			want:       []int{},
+		},
+		{
+			name:       "No matches",
+			input:      []int{1, 3, 5, 7, 9},
+			conditions: []check{isEven},
+			want:       []int{},
+		},
+		{
+			name:       "Single condition, multiple matches",
+			input:      []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			conditions: []check{isEven},
+			want:       []int{2, 4, 6, 8, 10},
+		},
+		{
+			name:       "Multiple conditions, multiple matches",
+			input:      []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			conditions: []check{isEven, isMultipleOfThree},
+			want:       []int{2, 3, 4, 6, 8, 9, 10},
+		},
+		{
+			name:       "Multiple conditions, no matches",
+			input:      []int{1, 3, 7, 9},
+			conditions: []check{isEven, isMultipleOfFive},
+			want:       []int{},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := ExtractMatchingIntsAny(tt.input, tt.conditions...)
+			if !slices.Equal(got, tt.want) {
+				t.Errorf("got %q want %q", got, tt.want)
+			}
+		})
+	}
+}
