@@ -1,0 +1,3 @@
+[submodule "student-grading-go"]
+	path = student-grading-go
+	url = https://github.com/glokta1/student-grading-go
