@@ -124,3 +124,47 @@ func TestExtractMatchingIntsAny(t *testing.T) {
 		})
 	}
 }
+func TestCreateMultipleFunc(t *testing.T) {
+	tests := []struct {
+		name string
+		n    int
+		x    int
+		want bool
+	}{
+		{
+			name: "Multiple of 2",
+			n:    2,
+			x:    4,
+			want: true,
+		},
+		{
+			name: "Not multiple of 2",
+			n:    2,
+			x:    5,
+			want: false,
+		},
+		{
+			name: "Multiple of 3",
+			n:    3,
+			x:    9,
+			want: true,
+		},
+		{
+			name: "Not multiple of 3",
+			n:    3,
+			x:    10,
+			want: false,
+		},
+		// Add more test cases as needed
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			f := CreateMultipleFunc(tt.n)
+			got := f(tt.x)
+			if got != tt.want {
+				t.Errorf("got %v want %v", got, tt.want)
+			}
+		})
+	}
+}

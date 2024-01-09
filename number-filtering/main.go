@@ -10,6 +10,12 @@ func isOdd(n int) bool {
 	return n%2 != 0
 }
 
+func CreateMultipleFunc(n int) check {
+	return func(x int) bool {
+		return x%n == 0
+	}
+}
+
 func isMultipleOfThree(n int) bool {
 	return n%3 == 0
 }
