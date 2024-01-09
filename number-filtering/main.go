@@ -1,6 +1,6 @@
 package main
 
-type check func(int) bool
+type Condition func(int) bool
 
 func isEven(n int) bool {
 	return n%2 == 0
@@ -10,7 +10,7 @@ func isOdd(n int) bool {
 	return n%2 != 0
 }
 
-func CreateMultipleFunc(n int) check {
+func CreateMultipleFunc(n int) Condition {
 	return func(x int) bool {
 		return x%n == 0
 	}
@@ -101,7 +101,7 @@ func ExtractOddThreesAboveTen(s []int) []int {
 	return oddThreesAboveTen
 }
 
-func ExtractMatchingInts(s []int, conditions ...check) []int {
+func ExtractMatchingInts(s []int, conditions ...Condition) []int {
 	matches := make([]int, 0, len(s))
 	for _, num := range s {
 		all := true
@@ -120,7 +120,7 @@ func ExtractMatchingInts(s []int, conditions ...check) []int {
 	return matches
 }
 
-func ExtractMatchingIntsAny(s []int, conditions ...check) []int {
+func ExtractMatchingIntsAny(s []int, conditions ...Condition) []int {
 	matches := make([]int, 0, len(s))
 	for _, num := range s {
 		for _, condition := range conditions {

@@ -80,37 +80,37 @@ func TestExtractMatchingIntsAny(t *testing.T) {
 	tests := []struct {
 		name       string
 		input      []int
-		conditions []check
+		conditions []Condition
 		want       []int
 	}{
 		{
 			name:       "Empty input",
 			input:      []int{},
-			conditions: []check{isEven},
+			conditions: []Condition{isEven},
 			want:       []int{},
 		},
 		{
 			name:       "No matches",
 			input:      []int{1, 3, 5, 7, 9},
-			conditions: []check{isEven},
+			conditions: []Condition{isEven},
 			want:       []int{},
 		},
 		{
 			name:       "Single condition, multiple matches",
 			input:      []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			conditions: []check{isEven},
+			conditions: []Condition{isEven},
 			want:       []int{2, 4, 6, 8, 10},
 		},
 		{
 			name:       "Multiple conditions, multiple matches",
 			input:      []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			conditions: []check{isEven, isMultipleOfThree},
+			conditions: []Condition{isEven, isMultipleOfThree},
 			want:       []int{2, 3, 4, 6, 8, 9, 10},
 		},
 		{
 			name:       "Multiple conditions, no matches",
 			input:      []int{1, 3, 7, 9},
-			conditions: []check{isEven, isMultipleOfFive},
+			conditions: []Condition{isEven, isMultipleOfFive},
 			want:       []int{},
 		},
 	}
